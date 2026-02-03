@@ -1,7 +1,19 @@
 ﻿@page "/"
+@inject ToastService toastService
 
 <PageTitle>David_BritoAP1_P1</PageTitle>
 
 <h1>David Brito <b>1000-4357</b></h1>
-
+<button @onclick="MostrarMensaje">Mostrar Mensaje</button> 
 Primer parcial programaci&oacute;n aplicada 1.
+
+
+@code
+{
+
+	private void MostrarMensaje()
+	{
+		toastService.ShowSuccess("Presionado correctamente");
+		
+	}
+}

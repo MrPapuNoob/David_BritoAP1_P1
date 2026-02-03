@@ -1,4 +1,7 @@
 using David_BritoAP1_P1.Components;
+using David_BritoAP1_P1.DAL;
+using David_BritoAP1_P1.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,8 +9,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-var app = builder.Build();
 
+
+
+var ConStr = builder.Configuration.GetConnectionString("SqlConStr");
+
+builder.Services.AddDbContextFactory<Contexto>(a => a.UseSqlServer(ConStr));
+
+builder.Services.AddScoped<ViajesEspacialesService>();
+
+builder.Services.AddBlazorBootstrap();
+
+
+
+
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
